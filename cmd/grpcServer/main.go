@@ -2,10 +2,8 @@ package main
 
 import (
 	"database/sql"
-	"fmt"
 	"log"
 	"net"
-	"os"
 
 	"github.com/Genarodaniel/go-grpc-study/internal/database"
 	"github.com/Genarodaniel/go-grpc-study/internal/pb"
@@ -30,8 +28,6 @@ func main() {
 		log.Fatal(err)
 	}
 
-	pwd, _ := os.Getwd()
-	fmt.Println(pwd)
 	fSrc, err := (&file.File{}).Open("../../internal/database/migrations")
 	if err != nil {
 		log.Fatal(err)
@@ -43,7 +39,7 @@ func main() {
 	}
 
 	// modify for Down
-	if err := m.Up(); err != nil {
+	if err := m.Up(); err != nil && err.Error() != "no change" {
 		log.Fatal(err)
 	}
 
