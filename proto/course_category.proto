@@ -23,8 +23,13 @@ message CategoryList {
 
 message blank{}
 
+message CategoryGetByIDRequest {
+    string id = 1;
+}
+
 
 service CategoryService {
     rpc CreateCategory(CreateCategoryRequest) returns (Category) {}
     rpc ListCategories(blank) returns(CategoryList) {}
+    rpc GetCategory(CategoryGetByIDRequest) returns (Category) {}
 }
