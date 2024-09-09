@@ -17,7 +17,14 @@ message CategoryResponse {
     Category Category = 1;
 }
 
+message CategoryList {
+    repeated Category categories =1;
+}
+
+message blank{}
+
 
 service CategoryService {
     rpc CreateCategory(CreateCategoryRequest) returns (Category) {}
+    rpc ListCategories(blank) returns(CategoryList) {}
 }
